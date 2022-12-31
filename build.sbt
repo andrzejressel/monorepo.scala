@@ -30,7 +30,7 @@ ThisBuild / assemblyMergeStrategy := {
 
 val zioVersion       = "2.0.5"
 val zioSchemaVersion = "0.4.1"
-val scodecVersion    = "2.1.0"
+val scodecVersion    = "2.2.0"
 
 //noinspection SbtDependencyVersionInspection
 //scala-steward is taking care of that
