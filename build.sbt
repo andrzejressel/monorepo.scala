@@ -44,7 +44,7 @@ lazy val commonSettings = Seq(
     "dev.zio"                %% "zio"            % zioVersion,
     "dev.zio"                %% "zio-streams"    % zioVersion,
     "dev.zio"                %% "zio-concurrent" % zioVersion,
-    "org.scala-sbt.ipcsocket" % "ipcsocket"      % "1.4.0",
+    "org.scala-sbt.ipcsocket" % "ipcsocket"      % "1.4.1",
     "org.apache.commons"      % "commons-lang3"  % "3.12.0",
     "commons-io"              % "commons-io"     % "2.11.0"   % Test,
     "dev.zio"                %% "zio-test"       % zioVersion % Test,
