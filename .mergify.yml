@@ -1,0 +1,16 @@
+queue_rules:
+  - name: default
+    conditions:
+      - check-success="build (11, ubuntu-latest)"
+      - check-success="build (17, ubuntu-latest)"
+
+pull_request_rules:
+  - name: automatic merge for main when reviewed and CI passes
+    conditions:
+      - check-success="build (11, ubuntu-latest)"
+      - check-success="build (17, ubuntu-latest)"
+      - base=main
+      - label=ready-to-merge
+    actions:
+      queue:
+        name: default
