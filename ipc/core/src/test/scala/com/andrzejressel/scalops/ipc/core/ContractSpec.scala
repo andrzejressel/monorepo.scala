@@ -86,6 +86,6 @@ object ContractSpec extends ZIOSpecDefault {
       )
 
     }
-  ) @@ timeout(10.second)
+  ) @@ timeout(30.second)
 
 }

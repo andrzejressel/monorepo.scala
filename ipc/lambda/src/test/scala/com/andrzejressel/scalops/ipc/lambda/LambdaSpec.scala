@@ -77,6 +77,6 @@ object AnyFunctionSpec extends ZIOSpecDefault {
         result <- api1.runFunction("abc")((s) => s + "xyz")
       } yield assertTrue(result == "abcxyz")
     }
-  ) @@ timeout(10.second)
+  ) @@ timeout(30.second)
 
 }

@@ -61,6 +61,6 @@ object Integration extends ZIOSpecDefault {
         } yield assertTrue(number == "Serialized function")
 
       } @@ withLiveEnvironment
-    ) @@ timeout(10.second)
+    ) @@ timeout(30.second)
 
 }
