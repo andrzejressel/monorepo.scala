@@ -29,6 +29,7 @@ import java.nio.file.Paths
 import scala.collection.immutable
 import scala.util.Try
 import com.andrzejressel.scalops.server.EntryPoint
+import java.nio.file.Files
 
 object Integration extends ZIOSpecDefault {
 
@@ -40,10 +41,16 @@ object Integration extends ZIOSpecDefault {
           "client",
           "target",
           "scala-3.2.1",
-          "client-assembly-0.1.0-SNAPSHOT.jar"
+          "scalopsClient-assembly-0.1.0-SNAPSHOT.jar"
         )
 
         for {
+          _ <-
+            if !Files.exists(path) then {
+              ZIO.fail(s"Path [$path] does not exist")
+            } else {
+              ZIO.unit
+            }
           commandQueue <- Queue.unbounded[Chunk[Byte]]
           c <- Command("java", "-jar", path.toAbsolutePath.toString)
             .stdin(ProcessInput.fromQueue(commandQueue))

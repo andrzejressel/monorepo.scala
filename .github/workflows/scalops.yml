@@ -1,4 +1,4 @@
-name: Scala CI
+name: Scalops
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: "Scalops build"
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -28,4 +29,4 @@ jobs:
 
     - name: Run tests
       timeout-minutes: 5
-      run: sbt test
+      run: sbt scalopsTest
