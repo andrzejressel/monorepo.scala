@@ -82,21 +82,17 @@ trait Endpoint {
       obj: INPUT
   ): Task[OUTPUT] = for {
     executionId <- zio.Random.nextUUID
-    // _ <- zio.Console.printLine(
-    // s"Executing [$id] with uuid [${executionId}] with [$obj]"
-    // )
     _ <- zio.Console.printLine(
       s"Executing [$id] with uuid [${executionId}]"
     )
     promise    <- Promise.make[Nothing, Any]
     serialized <- ZIO.attempt(serialize1(id, obj, executionId))
-    _          <- connection.send(serialized.bytes.toSeq)
     _          <- executionMap.put(executionId, promise)
+    _          <- connection.send(serialized.bytes.toSeq)
     _          <- zio.Console.printLine(s"Awaiting [$executionId]")
     value      <- promise.await.map(_.asInstanceOf[OUTPUT])
     _          <- executionMap.remove(executionId)
-    // _ <- zio.Console.printLine(s"Resolved [$executionId] with [$value]")
-    _ <- zio.Console.printLine(s"Resolved [$executionId]")
+    _          <- zio.Console.printLine(s"Resolved [$executionId]")
   } yield value
 
   private def serialize1(id: String, obj: Any, executionId: UUID): BitVector = {
