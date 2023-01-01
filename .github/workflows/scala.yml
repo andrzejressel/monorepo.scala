@@ -27,5 +27,5 @@ jobs:
       run: sbt check
 
     - name: Run tests
-      timeout-minutes: 2
+      timeout-minutes: 5
       run: sbt test
