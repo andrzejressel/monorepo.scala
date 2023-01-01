@@ -9,11 +9,9 @@ class CommandQueueOutputStream(commandQueue: Queue[Chunk[Byte]])
 
   override def write(b: Int): Unit =
     _run(commandQueue.offer(Chunk(b.toByte)))
-  
 
   override def write(b: Array[Byte]): Unit =
     _run(commandQueue.offer(Chunk.fromArray(b)))
-  
 
   private def _run[A](z: ZIO[Any, Nothing, A]) = zio.Unsafe
     .unsafely(
