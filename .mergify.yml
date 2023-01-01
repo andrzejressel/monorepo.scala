@@ -1,8 +1,12 @@
+shared:
+  my_ci: &common_checks
+    - check-success="Code checks"
+    - check-success="Scalops build (11, ubuntu-latest)"
+    - check-success="Scalops build (17, ubuntu-latest)"
+
 queue_rules:
   - name: default
-    conditions:
-      - check-success="build (11, ubuntu-latest)"
-      - check-success="build (17, ubuntu-latest)"
+    conditions: *common_checks
 
 pull_request_rules:
   - name: automatic merge for scala-steward PRs
@@ -13,10 +17,9 @@ pull_request_rules:
         name: default
   - name: automatic merge for main when CI passes
     conditions:
-      - check-success="build (11, ubuntu-latest)"
-      - check-success="build (17, ubuntu-latest)"
       - base=main
       - label=ready-to-merge
+      - and: *common_checks
     actions:
       queue:
         name: default
