@@ -3,4 +3,4 @@ target/
 .bsp/
 .idea/
 .metals/
-project/project/*
+metals.sbt
