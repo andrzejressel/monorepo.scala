@@ -1,3 +1,5 @@
+package com.andrzejressel.build
+
 import sbt.*
 import Keys.*
 import java.nio.file.Paths

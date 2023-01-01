@@ -1,4 +1,4 @@
-name: Scala CI
+name: Scalops
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       timeout-minutes: 5
-      run: sbt test
+      run: sbt scalops/test
