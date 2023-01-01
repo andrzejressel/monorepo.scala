@@ -5,7 +5,13 @@ queue_rules:
       - check-success="build (17, ubuntu-latest)"
 
 pull_request_rules:
-  - name: automatic merge for main when reviewed and CI passes
+  - name: automatic merge for scala-steward PRs
+    conditions:
+      - author=4ndrz3j-r35531[bot]
+    actions:
+      queue:
+        name: default
+  - name: automatic merge for main when CI passes
     conditions:
       - check-success="build (11, ubuntu-latest)"
       - check-success="build (17, ubuntu-latest)"
