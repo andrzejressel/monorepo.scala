@@ -1,10 +1,10 @@
 shared:
   my_ci: &common_checks
     - check-success="Code checks"
-    - check-success="Scalops tests (11, ubuntu-latest)"
-    - check-success="Scalops tests (17, ubuntu-latest)"
-    - check-success="Scalops integration tests (11, ubuntu-latest)"
-    - check-success="Scalops integration tests (17, ubuntu-latest)"
+    - check-success="Scalops tests (11, 3.2.1, ubuntu-latest)"
+    - check-success="Scalops tests (17, 3.2.1, ubuntu-latest)"
+    - check-success="Scalops integration tests (11, 3.2.1, ubuntu-latest)"
+    - check-success="Scalops integration tests (17, 3.2.1, ubuntu-latest)"
 
 queue_rules:
   - name: default
