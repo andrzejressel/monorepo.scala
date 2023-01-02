@@ -23,6 +23,11 @@ lazy val zioCommonSettings = scalopsCommonSettings ++ Seq(
 lazy val scalopsCommon = (project in file("common"))
   .dependsOn(scalopsIpcCore, scalopsIpcLambda)
   .settings(scalopsCommonSettings)
+  .enablePlugins(BuildInfoPlugin)
+  .settings(
+    buildInfoKeys    := Seq[BuildInfoKey](version, scalaVersion),
+    buildInfoPackage := "com.andrzejressel.scalops.common"
+  )
 
 lazy val scalopsClient = (project in file("client"))
   .dependsOn(scalopsCommon)

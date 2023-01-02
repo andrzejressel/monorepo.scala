@@ -1,8 +1,6 @@
 package com.andrzejressel.scalops.integration
 
-import zio.Queue
-import zio.Chunk
-import zio.ZIO
+import zio.{Chunk, Queue, ZIO}
 
 class CommandQueueOutputStream(commandQueue: Queue[Chunk[Byte]])
     extends java.io.OutputStream {

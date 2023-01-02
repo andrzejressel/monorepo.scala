@@ -10,13 +10,17 @@ inScope(Global)(
   )
 )
 
+val currentScala = "3.2.1"
+val nextScala    = "3.2.2-RC2"
+
 inThisBuild(
   Seq(
-    scalaVersion      := "3.2.1",
-    version           := "0.1.0-SNAPSHOT",
-    organization      := "pl.andrzejressel",
-    semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
+    scalaVersion       := currentScala,
+    crossScalaVersions := Seq(currentScala, nextScala),
+    version            := "0.1.0-SNAPSHOT",
+    organization       := "pl.andrzejressel",
+    semanticdbEnabled  := true,
+    semanticdbVersion  := scalafixSemanticdb.revision,
     scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
   )
 )
@@ -34,4 +38,7 @@ addCommandAlias(
   ";scalafixAll --check;scalafmtCheckAll;scalafmtSbtCheck"
 )
 
+lazy val scalops = (project in file("scalops"))
+
 lazy val root = (project in file("."))
+  .aggregate(scalops)
