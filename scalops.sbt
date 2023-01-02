@@ -25,8 +25,7 @@ lazy val scalopsCommon = (project in file("common"))
   .settings(scalopsCommonSettings)
   .enablePlugins(BuildInfoPlugin)
   .settings(
-    name          := "scalops",
-    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+    buildInfoKeys    := Seq[BuildInfoKey](version, scalaVersion),
     buildInfoPackage := "com.andrzejressel.scalops.common"
   )
 
