@@ -8,7 +8,7 @@ import _root_.com.andrzejressel.build.Dependencies.*
 //scala-steward is taking care of that
 lazy val scalopsCommonSettings = Common.settings ++ Seq(
   libraryDependencies ++= Seq(
-    "org.scala-sbt.ipcsocket" % "ipcsocket"     % "1.6.1",
+    "org.scala-sbt.ipcsocket" % "ipcsocket"     % "1.6.2",
     "org.apache.commons"      % "commons-lang3" % "3.12.0",
     "commons-io"              % "commons-io"    % "2.11.0" % Test
   ),
