@@ -10,22 +10,23 @@
     }
   },
   "mounts" : [
-    "source=scalops-workspaces-scalops-ipc-core-target,target=/workspaces/scalops/ipc/core/target,type=volume",
-    "source=scalops-workspaces-scalops-server-target,target=/workspaces/scalops/server/target,type=volume",
-    "source=scalops-workspaces-scalops-integration_tests-target,target=/workspaces/scalops/integration_tests/target,type=volume",
-    "source=scalops-workspaces-scalops-target,target=/workspaces/scalops/target,type=volume",
-    "source=scalops-workspaces-scalops-ipc-lambda-target,target=/workspaces/scalops/ipc/lambda/target,type=volume",
-    "source=scalops-workspaces-scalops-common-target,target=/workspaces/scalops/common/target,type=volume",
-    "source=scalops-workspaces-scalops-client-target,target=/workspaces/scalops/client/target,type=volume",
-    "source=scalops-workspaces-scalops-lambda_checker-target,target=/workspaces/scalops/lambda_checker/target,type=volume",
-    "source=scalops-home-vscode-.ivy2,target=/home/vscode/.ivy2,type=volume",
     "source=scalops-home-vscode-.cache,target=/home/vscode/.cache,type=volume",
-    "source=scalops-workspaces-scalops-.bsp,target=/workspaces/scalops/.bsp,type=volume",
+    "source=scalops-home-vscode-.ivy2,target=/home/vscode/.ivy2,type=volume",
     "source=scalops-workspaces-scalops-.bloop,target=/workspaces/scalops/.bloop,type=volume",
+    "source=scalops-workspaces-scalops-.bsp,target=/workspaces/scalops/.bsp,type=volume",
     "source=scalops-workspaces-scalops-.metals,target=/workspaces/scalops/.metals,type=volume",
+    "source=scalops-workspaces-scalops-client-target,target=/workspaces/scalops/client/target,type=volume",
+    "source=scalops-workspaces-scalops-common-target,target=/workspaces/scalops/common/target,type=volume",
+    "source=scalops-workspaces-scalops-integration_tests-target,target=/workspaces/scalops/integration_tests/target,type=volume",
+    "source=scalops-workspaces-scalops-ipc-core-target,target=/workspaces/scalops/ipc/core/target,type=volume",
+    "source=scalops-workspaces-scalops-ipc-lambda-target,target=/workspaces/scalops/ipc/lambda/target,type=volume",
+    "source=scalops-workspaces-scalops-lambda_checker-target,target=/workspaces/scalops/lambda_checker/target,type=volume",
+    "source=scalops-workspaces-scalops-project-.bloop,target=/workspaces/scalops/project/.bloop,type=volume",
     "source=scalops-workspaces-scalops-project-project,target=/workspaces/scalops/project/project,type=volume",
     "source=scalops-workspaces-scalops-project-target,target=/workspaces/scalops/project/target,type=volume",
-    "source=scalops-workspaces-scalops-project-.bloop,target=/workspaces/scalops/project/.bloop,type=volume"
+    "source=scalops-workspaces-scalops-scalops-target,target=/workspaces/scalops/scalops/target,type=volume",
+    "source=scalops-workspaces-scalops-server-target,target=/workspaces/scalops/server/target,type=volume",
+    "source=scalops-workspaces-scalops-target,target=/workspaces/scalops/target,type=volume"
   ],
   "remoteUser" : "vscode",
   "customizations" : {
@@ -35,5 +36,5 @@
       ]
     }
   },
-  "postCreateCommand" : "sudo chown vscode /workspaces/scalops/ipc/core/target && sudo chown vscode /workspaces/scalops/server/target && sudo chown vscode /workspaces/scalops/integration_tests/target && sudo chown vscode /workspaces/scalops/target && sudo chown vscode /workspaces/scalops/ipc/lambda/target && sudo chown vscode /workspaces/scalops/common/target && sudo chown vscode /workspaces/scalops/client/target && sudo chown vscode /workspaces/scalops/lambda_checker/target && sudo chown vscode /home/vscode/.ivy2 && sudo chown vscode /home/vscode/.cache && sudo chown vscode /workspaces/scalops/.bsp && sudo chown vscode /workspaces/scalops/.bloop && sudo chown vscode /workspaces/scalops/.metals && sudo chown vscode /workspaces/scalops/project/project && sudo chown vscode /workspaces/scalops/project/target && sudo chown vscode /workspaces/scalops/project/.bloop"
+  "postCreateCommand" : "sudo chown vscode /home/vscode/.cache && sudo chown vscode /home/vscode/.ivy2 && sudo chown vscode /workspaces/scalops/.bloop && sudo chown vscode /workspaces/scalops/.bsp && sudo chown vscode /workspaces/scalops/.metals && sudo chown vscode /workspaces/scalops/client/target && sudo chown vscode /workspaces/scalops/common/target && sudo chown vscode /workspaces/scalops/integration_tests/target && sudo chown vscode /workspaces/scalops/ipc/core/target && sudo chown vscode /workspaces/scalops/ipc/lambda/target && sudo chown vscode /workspaces/scalops/lambda_checker/target && sudo chown vscode /workspaces/scalops/project/.bloop && sudo chown vscode /workspaces/scalops/project/project && sudo chown vscode /workspaces/scalops/project/target && sudo chown vscode /workspaces/scalops/scalops/target && sudo chown vscode /workspaces/scalops/server/target && sudo chown vscode /workspaces/scalops/target"
 }
