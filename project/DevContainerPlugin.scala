@@ -52,7 +52,9 @@ object DevContainerPlugin extends AutoPlugin {
       )
 
       val paths =
-        (subprojectTargetPaths ++ additionalPaths).map(_.toAbsolutePath())
+        (subprojectTargetPaths ++ additionalPaths)
+          .map(_.toAbsolutePath())
+          .sorted
 
       val volumes = paths.map(p =>
         Volume(
