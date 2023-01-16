@@ -24,6 +24,7 @@ jobs:
       with:
         java-version: ${{ matrix.java }}
         distribution: 'temurin'
+        cache: 'sbt'
 
     - name: Run tests
       timeout-minutes: 5
@@ -46,6 +47,7 @@ jobs:
       with:
         java-version: ${{ matrix.java }}
         distribution: 'temurin'
+        cache: 'sbt'
 
     - name: Run integration tests
       timeout-minutes: 10
