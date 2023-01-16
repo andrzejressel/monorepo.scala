@@ -58,11 +58,17 @@ lazy val scalopsLambdaChecker = (project in file("lambda_checker"))
   .settings(scalopsCommonSettings)
 
 lazy val scalopsIntegrationTests = (project in file("integration_tests"))
+  .configs(IntegrationTest)
   .settings(scalopsCommonSettings)
   .dependsOn(scalopsCommon)
   .dependsOn(scalopsServer)
   .settings(
-    (Test / test) := ((Test / test) dependsOn (scalopsClient / assembly)).value
+    Defaults.itSettings,
+    libraryDependencies ++= Seq(
+      "dev.zio" %% "zio-test"     % zioVersion % IntegrationTest,
+      "dev.zio" %% "zio-test-sbt" % zioVersion % IntegrationTest
+    ),
+    (IntegrationTest / test) := ((IntegrationTest / test) dependsOn (scalopsClient / assembly)).value
   )
 
 val scalopsProjects = Seq(
@@ -72,16 +78,6 @@ val scalopsProjects = Seq(
   scalopsIpcLambda,
   scalopsServer,
   scalopsLambdaChecker
-)
-
-addCommandAlias(
-  "scalopsTest",
-  scalopsProjects.map(p => s";${p.id}/test").mkString
-)
-
-addCommandAlias(
-  "scalopsIntegrationTest",
-  s";${scalopsIntegrationTests.id}/test"
 )
 
 lazy val scalops = (project in file("scalops"))
