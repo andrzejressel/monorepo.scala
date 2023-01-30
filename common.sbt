@@ -11,7 +11,7 @@ inScope(Global)(
 )
 
 val currentScala = "3.2.1"
-val nextScala    = "3.2.2-RC2"
+val nextScala    = "3.2.2"
 
 inThisBuild(
   Seq(
