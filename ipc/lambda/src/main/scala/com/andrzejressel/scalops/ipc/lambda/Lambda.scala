@@ -71,7 +71,7 @@ object Lambda {
     }
   }
 
-  extension (inline endpoint: Endpoint)(using
+  extension (endpoint: Endpoint)(using
       LAMBDA_EXECUTION <:< scala.Tuple.Union[endpoint.USER_INPUT_TYPES]
   )
     inline def runFunction[B](inline f: () => B)(using
