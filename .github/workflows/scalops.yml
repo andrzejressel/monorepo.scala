@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         java: [11, 17]
-        scala: ["3.2.1", "3.2.2"]
+        scala: ["3.2.2", "3.3.0-RC2"]
         os: [ubuntu-latest]
 
     steps:
@@ -28,7 +28,7 @@ jobs:
 
     - name: Run tests
       timeout-minutes: 5
-      run: sbt scalops/Test/test
+      run: sbt ++${{ matrix.scala }} scalops/Test/test
 
   int:
     name: "Scalops integration tests"
@@ -37,7 +37,7 @@ jobs:
       fail-fast: false
       matrix:
         java: [11, 17]
-        scala: ["3.2.1", "3.2.2"]
+        scala: ["3.2.2", "3.3.0-RC2"]
         os: [ubuntu-latest]
 
     steps:
@@ -51,4 +51,4 @@ jobs:
 
     - name: Run integration tests
       timeout-minutes: 10
-      run: sbt scalops/IntegrationTest/test
+      run: sbt ++${{ matrix.scala }} scalops/IntegrationTest/test
