@@ -5,9 +5,11 @@ ARG VERSION=""
 ARG VARIANT=""
 ARG JAVA_VERSION=""
 ARG SBT_VERSION=""
-FROM mcr.microsoft.com/vscode/devcontainers/java:${VERSION}-${JAVA_VERSION}-${VARIANT}
+FROM mcr.microsoft.com/devcontainers/java:${VERSION}-${JAVA_VERSION}-${VARIANT}
 
 RUN su vscode -c "umask 0002 && . /usr/local/sdkman/bin/sdkman-init.sh && sdk install sbt ${SBT_VERSION} && sdk install scalacli"
+
+ENV JAVA_HOME=/usr/lib/jvm/msopenjdk-current
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

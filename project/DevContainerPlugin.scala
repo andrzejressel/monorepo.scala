@@ -79,10 +79,10 @@ object DevContainerPlugin extends AutoPlugin {
         "build" -> Map(
           "dockerfile" -> "Dockerfile",
           "args" -> Map(
-            "VERSION"      -> "0.205.5",
-            "VARIANT"      -> "buster",
+            "VERSION"      -> "0.205.9",
+            "VARIANT"      -> "bullseye",
             "JAVA_VERSION" -> "17",
-            "SBT_VERSION"  -> "1.8.0"
+            "SBT_VERSION"  -> "1.8.2"
           )
         ),
         "customizations" -> Map(
@@ -104,7 +104,9 @@ object DevContainerPlugin extends AutoPlugin {
       prettyPrinter.indentArraysWith(SYSTEM_LINEFEED_INSTANCE);
       mapper.setDefaultPrettyPrinter(prettyPrinter);
 
-      val result = mapper.writeValueAsString(devcontainerJson)
+      val result = mapper
+        .writeValueAsString(devcontainerJson)
+        .replaceAll("\" :", "\":")
 
       IO.write(
         devcontainerFile.toFile(),

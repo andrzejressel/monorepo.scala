@@ -1,15 +1,15 @@
 {
-  "name" : "Scala",
-  "build" : {
-    "dockerfile" : "Dockerfile",
-    "args" : {
-      "VERSION" : "0.205.5",
-      "VARIANT" : "buster",
-      "JAVA_VERSION" : "17",
-      "SBT_VERSION" : "1.8.0"
+  "name": "Scala",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VERSION": "0.205.9",
+      "VARIANT": "bullseye",
+      "JAVA_VERSION": "17",
+      "SBT_VERSION": "1.8.2"
     }
   },
-  "mounts" : [
+  "mounts": [
     "source=scalops-home-vscode-.cache,target=/home/vscode/.cache,type=volume",
     "source=scalops-home-vscode-.ivy2,target=/home/vscode/.ivy2,type=volume",
     "source=scalops-workspaces-scalops-.bloop,target=/workspaces/scalops/.bloop,type=volume",
@@ -28,13 +28,13 @@
     "source=scalops-workspaces-scalops-server-target,target=/workspaces/scalops/server/target,type=volume",
     "source=scalops-workspaces-scalops-target,target=/workspaces/scalops/target,type=volume"
   ],
-  "remoteUser" : "vscode",
-  "customizations" : {
-    "vscode" : {
-      "extensions" : [
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
         "scalameta.metals"
       ]
     }
   },
-  "postCreateCommand" : "sudo chown vscode /home/vscode/.cache && sudo chown vscode /home/vscode/.ivy2 && sudo chown vscode /workspaces/scalops/.bloop && sudo chown vscode /workspaces/scalops/.bsp && sudo chown vscode /workspaces/scalops/.metals && sudo chown vscode /workspaces/scalops/client/target && sudo chown vscode /workspaces/scalops/common/target && sudo chown vscode /workspaces/scalops/integration_tests/target && sudo chown vscode /workspaces/scalops/ipc/core/target && sudo chown vscode /workspaces/scalops/ipc/lambda/target && sudo chown vscode /workspaces/scalops/lambda_checker/target && sudo chown vscode /workspaces/scalops/project/.bloop && sudo chown vscode /workspaces/scalops/project/project && sudo chown vscode /workspaces/scalops/project/target && sudo chown vscode /workspaces/scalops/scalops/target && sudo chown vscode /workspaces/scalops/server/target && sudo chown vscode /workspaces/scalops/target"
+  "postCreateCommand": "sudo chown vscode /home/vscode/.cache && sudo chown vscode /home/vscode/.ivy2 && sudo chown vscode /workspaces/scalops/.bloop && sudo chown vscode /workspaces/scalops/.bsp && sudo chown vscode /workspaces/scalops/.metals && sudo chown vscode /workspaces/scalops/client/target && sudo chown vscode /workspaces/scalops/common/target && sudo chown vscode /workspaces/scalops/integration_tests/target && sudo chown vscode /workspaces/scalops/ipc/core/target && sudo chown vscode /workspaces/scalops/ipc/lambda/target && sudo chown vscode /workspaces/scalops/lambda_checker/target && sudo chown vscode /workspaces/scalops/project/.bloop && sudo chown vscode /workspaces/scalops/project/project && sudo chown vscode /workspaces/scalops/project/target && sudo chown vscode /workspaces/scalops/scalops/target && sudo chown vscode /workspaces/scalops/server/target && sudo chown vscode /workspaces/scalops/target"
 }
