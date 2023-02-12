@@ -22,6 +22,15 @@ object Dependencies {
     Seq(core, streams, concurrent, process, test, testSbt, testMagnolia)
   }
 
+  val ZIOSchema = {
+    val core       = "dev.zio" %% "zio-schema"            % zioSchemaVersion
+    val derivation = "dev.zio" %% "zio-schema-derivation" % zioSchemaVersion
+    val json       = "dev.zio" %% "zio-schema-json"       % zioSchemaVersion
+    val msgpack    = "dev.zio" %% "zio-schema-msg-pack"   % zioSchemaVersion
+
+    Seq(core, derivation, json, msgpack)
+  }
+
   val Scodec = {
     val core = "org.scodec" %% "scodec-core" % scodecVersion
     Seq(core)

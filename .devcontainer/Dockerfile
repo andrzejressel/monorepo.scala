@@ -7,6 +7,11 @@ ARG JAVA_VERSION=""
 ARG SBT_VERSION=""
 FROM mcr.microsoft.com/devcontainers/java:${VERSION}-${JAVA_VERSION}-${VARIANT}
 
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    sudo apt update && \
+    sudo apt install yarn
+
 RUN su vscode -c "umask 0002 && . /usr/local/sdkman/bin/sdkman-init.sh && sdk install sbt ${SBT_VERSION} && sdk install scalacli"
 
 ENV JAVA_HOME=/usr/lib/jvm/msopenjdk-current

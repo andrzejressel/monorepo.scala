@@ -38,12 +38,7 @@ lazy val scalopsIpcCore = (project in file("ipc/core"))
   .dependsOn(scalopsLambdaChecker)
   .settings(scalopsCommonSettings)
   .settings(
-    libraryDependencies ++= Seq(
-      "dev.zio" %% "zio-schema"            % zioSchemaVersion,
-      "dev.zio" %% "zio-schema-derivation" % zioSchemaVersion,
-      "dev.zio" %% "zio-schema-json"       % zioSchemaVersion,
-      "dev.zio" %% "zio-schema-msg-pack"   % zioSchemaVersion
-    )
+    libraryDependencies ++= ZIOSchema
   )
 
 lazy val scalopsIpcLambda = (project in file("ipc/lambda"))

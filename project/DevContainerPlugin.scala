@@ -85,6 +85,9 @@ object DevContainerPlugin extends AutoPlugin {
             "SBT_VERSION"  -> "1.8.2"
           )
         ),
+        "features" -> Map(
+          "ghcr.io/devcontainers/features/docker-in-docker:2" -> Map()
+        ),
         "customizations" -> Map(
           "vscode" -> Map(
             "extensions" -> Seq(
@@ -106,7 +109,8 @@ object DevContainerPlugin extends AutoPlugin {
 
       val result = mapper
         .writeValueAsString(devcontainerJson)
-        .replaceAll("\" :", "\":")
+        .replace("\" :", "\":")
+        .replace("{ }", "{}")
 
       IO.write(
         devcontainerFile.toFile(),
