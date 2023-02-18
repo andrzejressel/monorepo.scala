@@ -6,7 +6,7 @@ import sbt.{librarymanagement, *}
 object Dependencies {
 
   val zioVersion        = "2.0.9"
-  val zioSchemaVersion  = "0.4.7"
+  val zioSchemaVersion  = "0.4.8"
   val zioProcessVersion = "0.7.1"
   val scodecVersion     = "2.2.1"
 
