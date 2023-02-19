@@ -18,10 +18,7 @@ object Main extends ZIOAppDefault {
     for {
       p <- zio.Promise.make[
         Nothing,
-        Endpoint {
-          type USER_INPUT_TYPES = EXECUTIONS2;
-          type HANDLER_TYPES    = EXECUTIONS1;
-        }
+        CLIENT_ENDPOINT
       ]
       classLoader = HandlerClassLoader(p)
       handlers = HandlerBuilder

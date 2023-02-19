@@ -8,9 +8,7 @@ import zio.*
 class HandlerClassLoader(
     val apiPromise: Promise[
       Nothing,
-      Endpoint {
-        type USER_INPUT_TYPES = EXECUTIONS2; type HANDLER_TYPES = EXECUTIONS1
-      }
+      CLIENT_ENDPOINT
     ]
 ) extends ClassLoader() {
 
@@ -18,11 +16,11 @@ class HandlerClassLoader(
     val array = _run((for {
       api            <- apiPromise.await
       byteCodeOption <- api.execute[GET_CLASS](name)
-      _ <- zio.Console.printLine(s"Found bytecode: ${byteCodeOption.isDefined}")
-      byteCode <- ZIO.fromOption(byteCodeOption).map(_.toArray)
-    } yield byteCode).orDieWith { obj =>
-      println(obj); throw RuntimeException(s"$obj")
-    })
+      byteCode <- ZIO
+        .fromOption(byteCodeOption)
+        .map(_.toArray)
+        .mapError(_ => IllegalStateException(s"Cannot find class ${name}"))
+    } yield byteCode).orDie)
     println(s"Creating class: ${name}")
     // DefineClass hangs when called from another thread
     val clz = defineClass(name, array, 0, array.length, null)
@@ -30,16 +28,8 @@ class HandlerClassLoader(
     clz
   }
 
-  def rethrowErrors[A](f: () => A): A = {
-    try {
-      f()
-    } catch {
-      case (e: Error) => throw RuntimeException(e)
-    }
-  }
-
-  private def _run[A](z: ZIO[Any, Nothing, A]) = zio.Unsafe
-    .unsafely(
+  private def _run[A](z: ZIO[Any, Nothing, A]) =
+    zio.Unsafe.unsafely(
       zio.Runtime.default.unsafe
         .run(z)
         .getOrThrow()
