@@ -4,3 +4,5 @@ target/
 .idea/
 .metals/
 metals.sbt
+.direnv
+flake.lock
