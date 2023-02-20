@@ -22,11 +22,10 @@ object CheckerMacro {
   )(using Quotes, Type[LAMBDA]): Expr[Unit] = {
     import quotes.reflect.*
 
-    def findOwners(s: Symbol): List[Symbol] = s :: List.unfold(s)(s1 =>
-      Option.when(s1.maybeOwner != Symbol.noSymbol)(
-        (s1.maybeOwner, s1.maybeOwner)
-      )
-    )
+    def findOwners(s: Symbol) =
+      LazyList
+        .iterate(s)(_.maybeOwner)
+        .takeWhile(_ != Symbol.noSymbol)
 
     def isVariableInvalid(ident: Ident, root: Tree): Option[VariableError] = {
 
@@ -50,7 +49,7 @@ object CheckerMacro {
 
     val root = x match {
       // Removes inlining
-      case '{ $expr: (LAMBDA) } => expr.asTerm
+      case '{ $expr: LAMBDA } => expr.asTerm
     } match {
       case Block(l :: _, _) => l
     }
@@ -62,7 +61,7 @@ object CheckerMacro {
     val traverser = new TreeTraverser {
       override def traverseTree(tree: Tree)(owner: Symbol): Unit = {
         tree match {
-          case i @ Ident(_) =>
+          case i: Ident =>
             val symbol = tree.symbol
             val pos    = symbol.pos.get
 
