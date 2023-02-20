@@ -9,7 +9,7 @@ import scala.quoted.*
 
 object CheckerMacro {
 
-  inline def verify(inline x: Any): Unit = ${ verifyImpl('x) }
+  inline def verify[LAMBDA](inline x: LAMBDA): Unit = ${ verifyImpl('x) }
 
   private enum VariableError {
     case OUTSIDE_LAMBDA, OUTSIDE_LAMBDA_SERIALIZABLE
@@ -17,7 +17,9 @@ object CheckerMacro {
 
   import VariableError.*
 
-  private def verifyImpl(x: Expr[Any])(using Quotes): Expr[Unit] = {
+  private def verifyImpl[LAMBDA](
+      x: Expr[LAMBDA]
+  )(using Quotes, Type[LAMBDA]): Expr[Unit] = {
     import quotes.reflect.*
 
     def findOwners(s: Symbol): List[Symbol] = s :: List.unfold(s)(s1 =>
@@ -46,16 +48,10 @@ object CheckerMacro {
 
     }
 
-    def unwrapInlined(t: Term): Term = {
-      t match {
-        case Inlined(_, _, t: Inlined) => unwrapInlined(t)
-        case Inlined(_, _, t)          => t
-      }
-    }
-
-    val unwrapped = unwrapInlined(x.asTerm)
-
-    val root = unwrapped match {
+    val root = x match {
+      // Removes inlining
+      case '{ $expr: (LAMBDA) } => expr.asTerm
+    } match {
       case Block(l :: _, _) => l
     }
 
