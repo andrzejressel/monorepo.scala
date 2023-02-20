@@ -1,11 +1,10 @@
 package com.andrzejressel.scalops.common
 
-import com.andrzejressel.scalops.ipc.core.{API_DECLARATION, Execution}
+import com.andrzejressel.scalops.ipc.core.{API_DECLARATION, Endpoint, Execution}
 import com.andrzejressel.scalops.ipc.lambda.Lambda.LAMBDA_EXECUTION
 import zio.Chunk
 
 import java.util.concurrent.Executor
-import com.andrzejressel.scalops.ipc.core.Endpoint
 
 object ScalopsAPI {
   type DOUBLE_SECRET_NUMBER = Execution["addSecret", Unit, Int]
