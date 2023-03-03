@@ -7,7 +7,7 @@ object Dependencies {
 
   val zioVersion        = "2.0.9"
   val zioSchemaVersion  = "0.4.8"
-  val zioProcessVersion = "0.7.1"
+  val zioProcessVersion = "0.7.2"
   val scodecVersion     = "2.2.1"
 
   val ZIO = {
